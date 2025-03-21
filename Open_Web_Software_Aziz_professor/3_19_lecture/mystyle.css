@@ -1,0 +1,59 @@
+h1 { color: blue; }
+#special { color: red;}
+
+.type1 {
+    text-decoration-line: line-through;
+}
+
+input.a {
+    background-color: green;
+}
+
+
+a:hover {
+    font:bold 25px arial, sans-serif;
+    color: blue;
+}
+
+.section {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,th {
+    padding: 8px; text-align: left; border-bottom: 1px solid #ddd; 
+}
+
+td:hover {
+    background-color: rgb(198, 197, 197);
+}
+
+
+
+ul {
+    list-style-type: square;
+
+}
+
+
+li:nth-child(1){
+    font:italic 20px arial, sans-serif;
+}
+
+li:nth-child(3){
+    font:italic 20px arial, sans-serif;
+} /*수도 클래스*/
+
+
+li::marker {
+    color: blue;
+} /*수도 엘리먼트*/
+/*
+ul.b {
+    list-style-type: square;
+    color: blue;
+  }
+*/

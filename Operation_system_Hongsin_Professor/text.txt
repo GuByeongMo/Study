@@ -1,0 +1,87 @@
+# Operation_system_Hongsin_Professor
+
+
+3/18
+좀비 프로세스에 대하여 설명 
+function call overhead가 안된다? 알아보기. 아주 약간된다.
+
+교수님이 이야기하산 책을 잘 읽을것.
+
+그럼 내가 뭘해야하는가?
+책을 읽고 예상문제만들고 GPT돌려서 수업시간에 공부할것.
+한주의 준비는 금,토,일에 할것.
+시간은 24시간 
+렌즈는 8시간 
+10시부터 6시?
+8시 기상 12시 수면 
+9시30분~10시30분 운동
+11시~12시 내일 준비.
+버스에서 가벼운 암기.
+금요일은 총 복습.토요일은 공무원준비. 일요일은 자유.
+
+배열을 저장하면 메인 메모리에 저장된다. 
+
+과제 존재.
+비밀번호는 10022로 들어오고
+학생아이디로 들어와야되고 주소는 ssh -p sdevlab.cbnu.ac.kr
+터미널에서 실행해야된다? cpu-api 코드 실행해야함.
+
+ex 2021041009 이름:상인 이면
+s141009
+
+041에서 0은 필요없다.
+changethispassword가 비밀번호다. 그러면 새로운 비밀번호가 필요하다.
+쉬운 번호 쓰지말고 완벽한 비밀번호 쓰기를.
+
+리눅스 서버에 접속해야된다.
+문제있거나 모르는거 잇으면 TA나 교수님에게 메일할것.
+
+팀끼리 도와줄것.
+
+예습 복습은 한시간만.
+수업시간에는 수업에만 집중할것.
+
+suppose that?
+
+instruction? 컴퓨터에서 
+
+this portion? 포션?
+
+듀얼모델 operation 커널만 가능하다?
+
+achecive this 구현하기위해서.
+
+유저모드와 커널모드의 차이점 알기. 4~6 15pg
+segment?
+comprise?
+excute 실행하다.
+
+system api? api는 뭘까?
+
+runtime overhead?
+
+반복되는 서클을 방해하는것 interrupt.
+I/O 가ㅏ 무엇인지?
+
+trap 인스트럭션이 뭔지 위 두줄과 연관하여 공부하기.+ interupt.
+it called interupt handler
+
+context swithching 하는걸 time sharing in process
+
+timer interupt가 뭔지 공부하기.
+rasing 발런터리?
+
+so far? 그게뭘까.
+
+3/20
+
+굉장히 많은 버퍼
+
+커널코드에서 실행 실행된다 커널모드 아래에서
+전문적으로 불가능하다
+프로그램 터미네이티브
+
+
+
+
+
