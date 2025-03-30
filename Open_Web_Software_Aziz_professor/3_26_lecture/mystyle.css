@@ -1,0 +1,82 @@
+#header h1 { color: blue; }
+
+#days {color: red}
+
+.web {text-decoration-line: line-through; }
+
+input[type=text] { background-color: #3CBC8D; }
+
+.section.projects { text-align: center; }
+
+.uppercase { text-transform: uppercase; }
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+
+li.a {
+  display: inline-block;
+  width: 70px;
+  height: 20px;
+  padding: 5px;
+  border: 1px ; 
+  background-color: rgb(151, 151, 232);
+  text-align: center; 
+}
+
+a{
+  text-decoration: none;
+}
+
+#fixed3 {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(117, 108, 161);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  text-decoration-line: underline;
+}
+
+.avatar {
+  float:left;
+  position: relative;
+}
+
+.avatar img {
+  margin:5px;
+}
+
+.caption {            /*아바타 클래스안에만 존재*/
+  float:left;
+  background-color: rgb(189, 165, 246);
+  position: absolute;
+  text-align: center;
+  bottom: 0px;
+  width: 190px;
+  padding:5px;
+}
+
+.section {
+  clear:left;
+}
+
+p.clear {
+  float:left;
+}
+
+td:hover {background-color: #ddd;}
+
+
+
+
