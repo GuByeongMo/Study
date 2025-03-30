@@ -1,0 +1,128 @@
+/* 기본 리셋 및 본문 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+}
+
+
+/* 헤더와 내비게이션 컨테이너 */
+.top-bar {
+  background-color: #d3dfe3; /* 스크린샷 유사 색상 */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.logo-area img {
+  height: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin-left: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  background-color: #c8d8dd;
+}
+
+
+/* 안내 문구 */
+.sub-header {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.sub-header p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+
+/* 메인 콘텐츠 */
+main {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0;
+}
+
+main h2 {
+  margin-bottom: 10px;
+}
+
+main p {
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+
+/* 책 소개 영역 */
+.book-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.book-cover {
+  margin-right: 30px;
+}
+
+.book-cover img {
+  width: 200px;
+  height: auto;
+  display: block;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+
+/* 쿠폰 박스 */
+.coupon-box {
+  background-color: #edf1f2;
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  max-width: 180px;
+  font-size: 14px;
+  text-align: left;
+  position: absolute;
+  right: -220px; /* 책 커버 우측에 살짝 떨어져 배치 */
+  top: 0;
+}
+
+.coupon-box h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+
+/* 하단 여백 */
+footer {
+  height: 50px;
+}

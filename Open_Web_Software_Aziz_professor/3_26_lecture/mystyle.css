@@ -71,9 +71,6 @@ a{
   clear:left;
 }
 
-p.clear {
-  float:left;
-}
 
 td:hover {background-color: #ddd;}
 

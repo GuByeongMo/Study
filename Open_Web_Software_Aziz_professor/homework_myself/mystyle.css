@@ -1,0 +1,80 @@
+body {
+    width: 80%;
+    margin: auto;
+}
+
+.top_box {
+    position: relative;
+    background-color: #dce8eb;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.logo-area img {
+    height: 50px;
+}
+
+nav {
+    position:absolute;
+    right:300px;
+}
+  
+nav li {
+    display: inline-block;
+    width: 70px;
+    height: 20px;
+    padding: 5px;
+    border: 1px ; 
+    font-weight: bold;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px; 
+    margin: 10px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+nav li:hover {
+    background-color: gray;
+}
+
+
+.head_line {
+    text-align: center;
+}
+
+.content {
+    text-align: center;
+    position: relative;
+    max-width: 1000px;
+}
+
+.content hr {
+    border-width:2px 0 0 0; border-style:dotted;
+}
+.coupon_box {
+    width: 300px;
+    background-color: #7ab7ec;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    position: fixed;
+    right:300px;
+    bottom:400px;
+}
+
+.under_box {
+    background-color: #7ab7ec;
+    text-align: right;
+    padding: 10px;
+}
