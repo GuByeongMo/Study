@@ -7,12 +7,11 @@ body {
     position: relative;
     background-color: #dce8eb;
     padding: 10px;
-    display: flex;
+
     align-items: center;
 }
 
 .logo-area {
-    display: flex;
     align-items: center;
 }
 
@@ -22,7 +21,8 @@ body {
 
 nav {
     position:absolute;
-    right:300px;
+    right:10px;
+    top:0px;
 }
   
 nav li {
