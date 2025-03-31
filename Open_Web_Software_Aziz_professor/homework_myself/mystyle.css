@@ -66,6 +66,7 @@ nav li:hover {
     border-width:2px 0 0 0; border-style:dotted;
 }
 .coupon_box {
+    float: right;
     width: 300px;
     background-color: var(--color);
     border: 1px solid #949494;
