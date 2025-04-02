@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Bootstrap Theme Simply Me</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .bg-1 {
+            background-color: orange;
+
+            padding-top: 70px;
+            padding-bottom: 70px;
+            color: #ffffff;
+        }
+        
+        .bg-3 {
+            background-color: #f6f6f6; /* White */
+            padding-top: 70px;
+            padding-bottom: 70px;
+            max-width: 100%;
+
+        }
+        span {
+            font-size: 50px;
+            color:orange;
+        }
+
+        .img-circle {
+            border: 10px solid transparent;
+        }
+        .img-circle:hover {
+            border-color: #e2e2e2;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div class="container-fluid text-center bg-1 ">
+        <h1>Your Project Name</h1>
+        <p>Leave your email if you are interested in our project</p>
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Email Address">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="container-fluid bg-2 text-center">
+        <h3 class="margin">Where To Find Me?</h3><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-wrench"></span>
+                <h3 class="margin">Availability</h3><br>
+                <p>What we offer </p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-lock"></span>
+                <h3 class="margin">DEBUGGING</h3><br>
+                <p>What we offer </p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-off"></span>
+                <h3 class="margin">SECURITY</h3><br>
+                <p>What we offer </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container-fluid bg-3 text-center">
+        <h3 class="margin">Our Team</h3><br>
+        <p>introducing my self</p>
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="bird.jpg" class = "img-circle" width="255"  height="255" data-toggle="collapse" data-target="#demo1">    
+                <div id="demo1" class="collapse">
+                    <h4>My name is Gu</h4> <p>I'm a software engineer</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="bird.jpg" class = "img-circle" width="255" height="255" img-responsive>  
+            </div>
+            <div class="col-sm-4">
+                <img src="bird.jpg" class = "img-circle" width="255" height="255" img-responsive>  
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid bg-4 text-center">
+        
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>last name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                    
+                <tbody>
+                    <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>charles@email.com</td>
+                    </tr>
+                    <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr>
+                </tbody>
+            </table>
+
+    </div>
+
+</body>
+
+</html>
