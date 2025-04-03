@@ -76,3 +76,7 @@ so far? 그게뭘까.
 
 
 
+에이전트는 3개 주어지며
+rand_agent.c
+greedy_agent.c
+timeout.agent.c
