@@ -23,6 +23,7 @@ int main()
     }
     return 0;
 }
+
 void nexttoken() 
 {
     int c;
@@ -66,13 +67,11 @@ void list()
     list_dash();
 }
 
-
-
 void digit() 
 {
     if (lookahead >= '0' && lookahead <= '9') 
     {
-        printf("%c", lookahead);
+        printf("%c",lookahead);
         match(lookahead);
     } 
     else 
