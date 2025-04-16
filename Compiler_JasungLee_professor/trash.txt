@@ -64,6 +64,12 @@ A->A B
 
 번역계획을 이용하여 오른쪽 순환 하양식 예측 파서로 구현.
 
+main 함수안에 있던거 
+if (lookahead == END) 
+    {
+        printf("error");
+        exit(1);
+    }
 
 
 

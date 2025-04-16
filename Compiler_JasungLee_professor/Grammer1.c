@@ -1,76 +1,94 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define END '$'
-
-char lookahead;
-
-// forward declarations
 void nexttoken();
 void match(char token);
 void list();
-void list_prime();
 void digit();
+void list_dash();
 
-void list() {
-    digit();
-    list_prime();
-}
+char lookahead;
 
-void list_prime() {
-    if (lookahead >= '0' && lookahead <= '9') {
-        printf("-");
-        digit();
-        list_prime();
+int main() 
+{
+    nexttoken();
+    list();
+    if (lookahead == '$')
+    {
+        printf(" \n");    //그냥 출력
     }
-}
-
-void digit() {
-    if (lookahead >= '0' && lookahead <= '9') {
-        printf("%c", lookahead);
-        match(lookahead);
-    } else {
-        printf(" error");
-        exit(1);
+    else
+    {
+        printf(" error\n");  //에러가 있는걸 확인할 수 있게 출력
     }
+    return 0;
 }
 
-void match(char token) {
-    if (lookahead == token)
-        nexttoken();
-    else {
-        printf(" error");
-        exit(1);
-    }
-}
-
-void nexttoken() {
+void nexttoken() 
+{
     int c;
-    while (1) {
+    while (1) 
+    {
         c = getchar();
         if (c == ' ' || c == '\t' || c == '\n')
-            continue;
+        {
+            continue;     
+        }
+
         if (c == EOF)
-            lookahead = END;
+        {
+            lookahead = '$';
+        }
+
         else
+        {
             lookahead = c;
+        }
         return;
     }
 }
 
-int main() {
-    nexttoken();
-    if (lookahead == END) {
+void match(char token) 
+{
+    if (lookahead == token)
+    {
+        nexttoken();
+    }
+    else 
+    {
         printf(" error");
         exit(1);
     }
-
-    list();
-
-    if (lookahead == END)
-        printf("\n");
-    else
-        printf(" error\n");
-
-    return 0;
 }
+
+void list() 
+{
+    digit();
+    list_dash();
+}
+
+void digit() 
+{
+    if (lookahead >= '0' && lookahead <= '9') 
+    {
+        printf("%c",lookahead);
+        match(lookahead);
+    } 
+    else 
+    {
+        printf(" error");
+        exit(1);
+    }
+}
+
+void list_dash() 
+{
+    if (lookahead >= '0' && lookahead <= '9') 
+    {
+        printf("-");
+        digit();
+        list_dash();
+    }
+}
+
+
