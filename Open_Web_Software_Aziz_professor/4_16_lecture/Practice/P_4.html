@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <body id="target">
+        <form>
+            <input type="radio" name="C1" value="v1"
+                onclick="changeColor('lightblue')">Blue
+            <input type="radio" name="C1" value="v2"
+                onclick="changeColor('lightgreen')">Green
+        </form>
+
+
+        <script>
+            function changeColor(color) {
+                document.getElementById("target").style.backgroundColor = color;
+            }
+        </script>
+
+    </body>
+</html>

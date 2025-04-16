@@ -6,18 +6,35 @@
 
     <body>
         <input type="text" id="task" placeholder="Write a task">
-
-        <button onlick="addTask()">Add</button>
-
+        <select id="priority">
+            <option value="High">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+        <button onclick="addTask()">Add</button>
+        
         <ol id="taskList"></ol>
+        
 
+        
         <script>
             function addTask() {
                 var input = document.getElementById("task").value;
                 var newTask = document.createElement("li");
-                newTask.innerHTML = input;
+                var level = document.getElementById("priority").value;
+                if (level === "High") {
+                    newTask.style.color = "red";
+                } else if (level === "medium") {
+                    newTask.style.color = "orange";
+                } else {
+                    newTask.style.color = "green";
+                }
+                
+                newTask.innerHTML = input +  " (" + level + ")";
                 document.getElementById("taskList").appendChild(newTask);
+                
             }
+            
         </script>
 
     </body>

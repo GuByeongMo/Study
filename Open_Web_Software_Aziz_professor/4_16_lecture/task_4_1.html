@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <body>
+        <h2>Simple Quiz</h2>
+
+        <p>1.What is the capital of France?</p>
+
+        <form>
+            <input type="radio" name="C1" value="v1"
+                onclick="changeColor('London')">London
+            <input type="radio" name="C1" value="v2"
+                onclick="changeColor('Berlin')">Berlin
+            <input type="radio" name="C1" value="v3"
+                onclick="changeColor('Paris')">Paris
+            <input type="radio" name="C1" value="v4"
+                onclick="changeColor('Rome')">Rome
+            <button type="button" onclick ="showHint()">Hint</button>
+            <p id="hint" style="display:none">Hint</p>
+        </form>
+
+
+        <script>
+            function changeColor(color) {
+                if (color === 'Paris') {
+                    alert("Correct! The capital of France is Paris.");
+                } 
+            }
+
+            function showHint() {
+                var hint = document.getElementById("hint");
+                if (hint.style.display == "none") {
+                    hint.style.display = "block";
+                } else {
+                    hint.style.display = "none";
+                }
+            }
+
+
+        </script>
+
+    </body>
+</html>
