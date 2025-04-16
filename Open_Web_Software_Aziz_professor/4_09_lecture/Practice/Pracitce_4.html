@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>String Length and Uppercase</title>
+</head>
+<body>
+    <h2>String Analyzer</h2>
+
+    <p id="output"></p>
+
+    <script>
+        var text = prompt("Enter a string:");
+
+        var result = "Length: " + text.length + "<br>";
+        result += "Uppercase: " + text.toUpperCase();
+
+        document.getElementById("output").innerHTML = result;
+    </script>
+</body>
+</html>

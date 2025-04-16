@@ -1,0 +1,26 @@
+# 컴파일러 및 플래그 설정
+CC = gcc
+CFLAGS = -Wall -Wextra -O2
+
+# 타겟 실행 파일
+TARGETS = gamatch rand_agent timeout_agent
+
+# 기본 빌드 명령
+all: $(TARGETS)
+
+# 각 타겟 빌드 방법
+gamatch: gamatch.c
+	$(CC) $(CFLAGS) -o gamatch gamatch.c
+
+rand_agent: rand_agent.c
+	$(CC) $(CFLAGS) -o rand_agent rand_agent.c
+
+timeout_agent: timeout_agent.c
+	$(CC) $(CFLAGS) -o timeout_agent timeout_agent.c
+	
+greedy_agent: greedy_agent.c
+	$(CC) $(CFLAGS) -o greedy_agent greedy_agent.c
+
+# 빌드 결과물 제거
+clean:
+	rm -f $(TARGETS)

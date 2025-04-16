@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <script>
+        var password = "student1234";
+        var text = prompt("Enter a string:");
+
+        if (text.length < 8) {
+            alert(text + "is a WEAK password");
+        } else if (text.length >= 8 && text.length <= 12) {
+            alert(text + "is" + "a" + "MEDIUM password");
+        } else if (text.length > 12) {
+            alert(text + "is" + "a" + "STRONG" + "password");
+        }
+        
+        
+    </script>
+</body>
+</html>

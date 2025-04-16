@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body id="body">
+        <button onlick="toggleTheme()">Toggle Theme</button>
+
+        <p>A button to toggle th background</p>
+
+        <script>
+            function toggleTheme() {
+                if (document.body.style.background === "black") {
+                    document.body.style.background = "white";
+                    document.body.style.color = "black";
+                } 
+                else {
+                    document.body.style.background = "black";
+                    document.body.style.color = "white";
+                }
+            }
+        </script>
+
+    </body>
+</html>

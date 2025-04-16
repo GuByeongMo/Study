@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<htme>
+    <head>
+
+    </head>
+
+    <body>
+        <h3>Create account</h3>
+        <input type="password" id = "password" placeholder="Password"><br><br>
+        <input type="password" id = "confirm_password" placeholder="Confirm Password"><br><br>
+        <br>
+
+        <button id="submitBtn" onclick="checkPassword()">Submit</button>
+        <p id="message" style="color:red;"></p>
+
+        <script>
+            function checkPassword() {
+                let password = document.getElementById("password").value;
+                let confirm_password = document.getElementById("confirm_password").value;
+
+                if (password !== confirm_password) {
+                    document.getElementById("message").innerHTML = "Passwords do not match!";
+                } else {
+                    document.getElementById("message").innerHTML = "Passwords match!";
+                }
+            }
+        </script>
+    </body>
+</htme>

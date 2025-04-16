@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<htme>
+    <head>
+
+    </head>
+
+    <body>
+        <h3>Simple Input Validation</h3>
+        <p>Username:</p>
+        <input type="UserName" id = "username" placeholder="Enter username"><br><br>
+        <p>Email:</p>
+        <input type="Email" id = "email" placeholder="Enter email"><br><br>
+        <br>
+
+        <button id="submitBtn" onclick="checkright()">Submit</button>
+        <p id="message" style="color:red;"></p>
+
+        <script>
+            function checkright() {
+                let username = document.getElementById("username").value;
+                let email = document.getElementById("email").value;
+                let errorMsg = "";
+                if(username.length < 5) {
+                    errorMsg += document.getElementById("message").innerHTML = "Username must be at least 5 characters long ";
+                }
+                if(email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+                    errorMsg += document.getElementById("message").innerHTML = "Email must contain '@' and '.' ";
+                }
+                document.getElementById("message").innerHTML = errorMsg;
+                if (errorMsg === "") {
+                    alert("Signing up successfully!");
+                }
+            }
+        </script>
+    </body>
+</htme>

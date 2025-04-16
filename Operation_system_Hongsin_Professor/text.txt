@@ -80,3 +80,15 @@ so far? 그게뭘까.
 rand_agent.c
 greedy_agent.c
 timeout.agent.c
+
+시그널=홈워크2에서 꼭써야되는것.
+커널->프로세스 
+
+CTRL C(SIGANT) , CTRL Z 등 3가지 상황에서 시그널이 발생.
+
+
+signal()
+
+sigchld : child(?) GPTㄱㄱ
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JavaScript HTML DOM</title>
+        <script>
+            var item = document.getElementsByTagName("li").innerHTML;
+            function Show() {
+                for (let i=0 ; i < item.length ; i++) {
+                    if (item[i].innerHTML.length > 10) {
+                        item[i].style.backgroundColor = "lightgreen";
+                    }
+                }
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <ul>
+            <script>
+                document.write("<li class='li'>Apple</li>");
+                document.write("<li class='li'>Appleaaaaaaaaaaaa</li>");
+                document.write("<li class='li'>Banana</li>");
+                document.write("<li class='li'>Bananaaaaaaaaaaaaa</li>");
+
+            </script>
+           
+        </ul>
+        <input type="button" value="Analyze" onclick="Show()">
+    </body>
+</html>

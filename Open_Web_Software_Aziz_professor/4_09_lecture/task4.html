@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Simple String Analyzer</h2>
+    <h5>String Info</h5>
+
+    <p id="output"></p>
+
+    <script>
+        var text = prompt("Enter a string:");
+
+        var result = "Length: " + text.length + "<br>";
+        result += "First letter: " + text.slice(0, 1) + "<br>";
+        result += "Last letter: " + text.slice(-1) + "<br>";
+        result += "Uppercase: " + text.toUpperCase() + "<br>";
+        
+        if(text=="JavaScript")
+        {
+            result+= "Contains 'JavaScript'? Yes<br>";
+        }
+
+
+        document.getElementById("output").innerHTML = result;
+    </script>
+</body>
+</html>

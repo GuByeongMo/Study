@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p id="output"></p>
+    <script>
+        function applyDiscount(price, discount)
+        {
+            return price = price - (price * discount);
+            
+        }
+
+        var price = prompt("Enter a price:");
+        if(price > 100) 
+        {
+            price = applyDiscount(price, 0.15);
+            alert("final price: $" + price);
+        }
+        else if (price > 50)
+        {
+            price = applyDiscount(price, 0.10);
+            alert("final price: $" + price);
+        }
+        
+        
+    </script>
+</body>
+</html>

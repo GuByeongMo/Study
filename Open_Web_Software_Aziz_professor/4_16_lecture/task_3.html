@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h2>To-Do List</h2>
+    </head>
+
+    <body>
+        <input type="text" id="task" placeholder="Write a task">
+
+        <button onlick="addTask()">Add</button>
+
+        <ol id="taskList"></ol>
+
+        <script>
+            function addTask() {
+                var input = document.getElementById("task").value;
+                var newTask = document.createElement("li");
+                newTask.innerHTML = input;
+                document.getElementById("taskList").appendChild(newTask);
+            }
+        </script>
+
+    </body>
+</html>

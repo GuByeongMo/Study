@@ -33,7 +33,7 @@ void print_board(char arr[6][7])
 int move(char arr[6][7], char move_do, int player_num)
 {
     int col = move_do - 'A';
-    if (move_do < 'A' || move_do > 'G')
+    if (move_do < 'A' || move_do > 'G') 
     {
         return -1;
     }
@@ -90,18 +90,23 @@ int check_mate(char arr[6][7])
     else return 0;
 }
 
-void sigint_handler(int signum)
+void crtl_c(int sig)
 {
-    printf("\n Ctrl+C 를 눌러 취소되었습니다.\n");
-    if (currentChild != -1)
+    if (sig == SIGINT)
     {
-        kill(currentChild, SIGKILL);
+        printf("\n[Received Signal: %d] Ctrl + C pressed\n", sig);
+        if (currentChild != -1)
+        {
+            kill(currentChild, SIGKILL);
+        }
+        exit(1);
     }
-    exit(1);
 }
 
-void sigalrm_handler(int signum)
+void time_out(int sig)
 {
+    printf("\n[Received Signal: %d] Alarm timeout triggered\n", sig);
+    
     if (currentChild != -1)
     {
         kill(currentChild, SIGKILL);
@@ -109,8 +114,10 @@ void sigalrm_handler(int signum)
 
     if (currentPlayer_num == 1 || currentPlayer_num == 2)
     {
-        printf("player_num %d (%c) timed out! No move within 3 seconds.\n", currentPlayer_num, currentPlayer_num == 1 ? 'X' : 'Y');
-        printf("player_num %d (%c) wins by timeout!\n", currentPlayer_num == 1 ? 2 : 1, currentPlayer_num == 1 ? 'Y' : 'X');
+        printf("player_num %d (%c) timed out! No move within 3 seconds.\n",
+               currentPlayer_num, currentPlayer_num == 1 ? 'X' : 'Y');
+        printf("player_num %d (%c) wins by timeout!\n",
+               currentPlayer_num == 1 ? 2 : 1, currentPlayer_num == 1 ? 'Y' : 'X');
     }
     else
     {
@@ -120,11 +127,11 @@ void sigalrm_handler(int signum)
     exit(1);
 }
 
+
 int main(int argc, char *argv[])
 {
-    // 시그널 핸들러 등록
-    signal(SIGINT, sigint_handler);
-    signal(SIGALRM, sigalrm_handler);
+    signal(SIGINT, crtl_c);
+    signal(SIGALRM, time_out);
 
     if (argc != 5 || strcmp(argv[1], "-X") != 0 || strcmp(argv[3], "-Y") != 0)
     {
@@ -138,8 +145,14 @@ int main(int argc, char *argv[])
     while (1)
     {
         int to_agent[2], from_agent[2];
-        pipe(to_agent);
-        pipe(from_agent);
+        if (pipe(to_agent) == -1) {
+            perror("pipe to_agent failed");
+            exit(1);
+        }
+        if (pipe(from_agent) == -1) {
+            perror("pipe from_agent failed");
+            exit(1);
+        }
 
         pid_t pid = fork();
         if(pid<0){
@@ -148,12 +161,14 @@ int main(int argc, char *argv[])
         }
         else if (pid == 0)
         {
-            // 자식 프로세스 (에이전트 실행)
             close(to_agent[1]);
             close(from_agent[0]);
 
             int agent_num;
-            read(to_agent[0], &agent_num, sizeof(agent_num));
+            if (read(to_agent[0], &agent_num, sizeof(agent_num)) != sizeof(agent_num)) {
+                perror("read agent_num failed");
+                exit(1);
+            }
 
             dup2(to_agent[0], STDIN_FILENO);
             dup2(from_agent[1], STDOUT_FILENO);
@@ -166,20 +181,23 @@ int main(int argc, char *argv[])
         }
         else
         {
-            // 부모 프로세스
             close(to_agent[0]); close(from_agent[1]);
             currentChild = pid;
 
             int player_num = (play_turn++)%2 + 1;
-            write(to_agent[1], &player_num, sizeof(player_num));
+            if (write(to_agent[1], &player_num, sizeof(player_num)) != sizeof(player_num)) {
+                perror("write player_num failed");
+                exit(1);
+            }
             
             
             currentPlayer_num = player_num;
             char player_char = (player_num == 1 ? '1' : '2');
             char char_buf[2] = {player_char, '\n'};
-            write(to_agent[1], char_buf, sizeof(char_buf));
-            //write(to_agent[1], game_board, sizeof(game_board));
-            // 기존 board 전송 제거하고 아래처럼 변경
+            if (write(to_agent[1], char_buf, sizeof(char_buf)) != sizeof(char_buf)) {
+                perror("write char_buf failed");
+                exit(1);
+            }
             for (int i = 0; i < 6; i++)
             {
                 char row[32];
@@ -192,20 +210,23 @@ int main(int argc, char *argv[])
                 }
                 row[offset++] = '\n';
                 row[offset] = '\0';
-                write(to_agent[1], row, strlen(row));
+                if (write(to_agent[1], row, strlen(row)) != (ssize_t)strlen(row)) {
+                    perror("write row failed");
+                    exit(1);
+                }
             }
 
             close(to_agent[1]);
 
-            alarm(3); // 3초 타임아웃 설정 후 에이전트 응답 대기
+            alarm(3);
             char move_char;
-            waitpid(pid, NULL, 0); // 자식 프로세스 종료 대기
+            waitpid(pid, NULL, 0);
             if (read(from_agent[0], &move_char, 1) <= 0)
             {
                 printf("Failed to read move. Agent did not respond in time.\n");
                 exit(1);
             }
-            alarm(0); // 응답 받으면 타이머 취소
+            alarm(0);
             close(from_agent[0]);
             currentChild = -1;
 
@@ -241,7 +262,7 @@ int main(int argc, char *argv[])
             }
 
             print_board(game_board);
-            sleep(1);
+            sleep(2);
         }
     }
 
