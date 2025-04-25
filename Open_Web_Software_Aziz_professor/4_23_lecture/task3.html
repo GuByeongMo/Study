@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <html>
+    <div id="map" style="width:800px;height:500px"></div>
+
+    <script>
+        function myMap() {
+            var mapCanvas = document.getElementById("map");
+            var myCenter = new google.maps.LatLng(36.6283, 127.4583);
+            var mapOptions = {
+                center: myCenter,
+                zoom: 7
+            };
+            var makers = [
+                new google.maps.LatLng(37.5666791, 126.9782914),
+                new google.maps.LatLng(35.1799528, 129.0752365),
+                new google.maps.LatLng(35.8713, 128.6018),
+                new google.maps.LatLng(36.3496, 127.3848),
+                new google.maps.LatLng(35.1594647, 126.8515034),
+            ]
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            for (var i = 0; i < makers.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: makers[i],
+                    map: map
+                });
+            }
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyCAOy2EyRWFNwuXZGgiyhcskj5RLOWo5Xc&callback=myMap"></script>
+</body>
+
+</html>

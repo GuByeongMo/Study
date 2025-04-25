@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <html>
+    <div id="map1" style="width:800px;height:500px"></div>
+    <div id="map2" style="width:800px;height:500px"></div>
+
+    <script>
+        function myMap() {
+            var myCenter = new google.maps.LatLng(36.6283, 127.4583);
+
+            var mapCanvas = document.getElementById("map1");
+            var mapOptions = {
+                center: myCenter,
+                zoom: 7
+            };
+            var map1 = new google.maps.Map(mapCanvas, mapOptions);
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                map: map1
+            });
+
+            var mapCanvas2 = document.getElementById("map2");
+            var mapOptions2 = {
+                center: myCenter,
+                zoom: 7
+            };
+
+            var map2 = new google.maps.Map(mapCanvas2, mapOptions2);
+
+
+            google.maps.event.addListener(marker, 'click', function () {
+                map.setZoom(9);
+                map.setCenter(marker.getPosition());
+            });
+
+        }
+        function goTo(index) {
+            map.setCenter(centers[index]);
+            map.setZoom(10);
+        }
+
+
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyCAOy2EyRWFNwuXZGgiyhcskj5RLOWo5Xc&callback=myMap"></script>
+</body>
+
+</html>

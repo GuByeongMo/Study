@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <html>
+    <div id="map" style="width:800px;height:500px"></div>
+
+    <script>
+        function myMap() {
+            var mapCanvas = document.getElementById("map");
+            var myCenter = new google.maps.LatLng(36.6283, 127.4583);
+            var mapOptions = {
+                center: myCenter,
+                zoom: 5
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                map: map
+            });
+            var infowindow = new google.maps.InfoWindow({
+                content: "Hi. This is CBNU!"
+            });
+            infowindow.open(map, marker);
+        }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyCAOy2EyRWFNwuXZGgiyhcskj5RLOWo5Xc&callback=myMap"></script>
+</body>
+
+</html>
