@@ -1,0 +1,15 @@
+﻿  cbc3.c
+  cbc3lex.c
+  코드를 생성하고 있습니다...
+\cbc3.c(1323,16): warning C4013: 'yylex'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  (소스 파일 '../../cbc3.c'을(를) 컴파일하는 중)
+  
+\cbc3.c(1519,7): warning C4013: 'yyerror'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  (소스 파일 '../../cbc3.c'을(를) 컴파일하는 중)
+  
+\cbc3.l(34,33): warning C4013: 'MakeNode'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  (소스 파일 '../../cbc3lex.c'을(를) 컴파일하는 중)
+  
+C:\cording\Study\Compiler_JasungLee_professor\practice\compiler\compiler\cbc3.l(57,1): warning C4716: 'yywrap': 값을 반환해야 합니다.
+C:\cording\Study\Compiler_JasungLee_professor\practice\compiler\compiler\cbc3.y(131,1): warning C4716: 'yyerror': 값을 반환해야 합니다.
+  compiler.vcxproj -> C:\cording\Study\Compiler_JasungLee_professor\practice\compiler\Debug\compiler.exe

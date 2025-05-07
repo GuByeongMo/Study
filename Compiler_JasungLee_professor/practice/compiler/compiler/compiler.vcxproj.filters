@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="compiler.cpp">
+    <ClCompile Include="..\..\cbc3.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\cbc3lex.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

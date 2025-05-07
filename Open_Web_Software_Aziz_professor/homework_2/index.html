@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="title">Movie</h1>
+            <div class="login-box">
+                <input type="text" id="id" placeholder="ID"><br>
+                <input type="password" id="password" placeholder="Confirm Password"><br>
+                <button id="subminBtn" onclick="Signin()">Sign in</button>
+            </div>
+          </div>
+        
+        <br>
+        
+        <script>
+            function Signin() {
+                let password = document.getElementById("id").value;
+                let confirmPassword = document.getElementById("password").value;
+                if(id !== "admin") {
+                    document.getElementById("message").innerText = "ID do not match" ;
+                }
+                if(password !== '1234') {
+                    document.getElementById("message").innerText = "Password do not match" ;
+                }
+            }
+        </script>
+    </body>
+</html>
