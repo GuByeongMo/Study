@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seat Booking</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,body {
+            height: 100%;
+        }
+
+        .toolbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(255, 254, 254, 0.7);
+        }
+
+        .toolbar .left {
+            flex: 1;
+            text-align: left;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .toolbar .right {
+            flex: 1;
+            text-align: right;
+        }
+
+        .toolbar .right a,.toolbar .right button {
+            margin-left: 20px;
+            font-size: 1rem;
+            color: #fff;
+            text-decoration: none;
+            background: none;
+            border: none;
+        }
+
+        .toolbar .right button {
+            padding: 6px 12px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+        }
+
+        .toolbar .right button:hover {
+            background: #fff;
+            color: #333;
+        }
+
+        .cinema {
+            background: url('cinema.jpg') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cinema h1 {
+            color: #fff;
+            font-size: 4rem;
+        }
+
+        .seat-map {
+            padding: 30px;
+            text-align: center;
+        }
+
+        #seats-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            padding: 10px;
+            border: 2px solid #ccc;
+            background: #f9f9f9;
+        }
+
+        .seat {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .seat img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .seat-num {
+            top: 10px;
+            left: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .seat.available:hover {
+            background-color: yellow;
+            border-radius: 10px;
+        }
+
+        .state {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .state-picture {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 1rem;
+        }
+
+        .state-picture img {
+            width: 24px;
+            height: 24px;
+        }
+
+        #book-btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border: 2px solid #4199d3;
+            background: #fff;
+            border-radius: 25px;
+            color: #459bd5;
+        }
+
+        #book-btn:hover {
+            background: #3ca0e2;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="toolbar">
+        <div class="left">You are logged in as <span id="userSpan"></span></div>
+        <div class="right">
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </div>
+
+    <div class="cinema">
+        <h1>Welcome to Seat Booking</h1>
+    </div>
+
+    <div class="seat-map">
+        <div id="seats-container"></div>
+        <div class="state">
+            <div class="state-picture">
+                <img src="chair.png" alt=""> Available Seat
+            </div>
+            <div class="state-picture">
+                <img src="chair_book.png" alt=""> Booked Seat
+            </div>
+            <div class="state-picture">
+                <img src="chair_selected.png" alt=""> Selected Seat
+            </div>
+        </div>
+        <button id="book-btn">BOOK NOW</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () 
+        {
+            var user = sessionStorage.loggedInUser || 'Guest';
+            document.getElementById('userSpan').textContent = user;
+
+            var logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', function () 
+            {
+                sessionStorage.loggedInUser = null;
+                location.href = 'index.html';
+            });
+
+            var seatsContainer = document.getElementById('seats-container');
+            var booked = [2, 4, 14, 18, 19, 24, 29, 40, 43];
+            var selected = [];
+
+            for (var i = 1; i <= 50; i++) 
+            {
+                var seat = document.createElement('div');
+                seat.className = 'seat';
+
+                if (booked.indexOf(i) !== -1) 
+                {
+                    seat.className += ' booked';
+                } 
+                else 
+                {
+                    seat.className += ' available';
+                }
+                seat.dataset.seat = i;
+                seat.innerHTML = '<img src="' + (seat.className.indexOf('booked') !== -1 ? 'chair_book.png' : 'chair.png') + '">' +
+                    '<span class="seat-num">' + i + '</span>';
+                seatsContainer.appendChild(seat);
+            }
+
+            seatsContainer.addEventListener('click', function (event) 
+            {
+                var seat = event.target.closest('.seat');
+                if (!seat || seat.className.indexOf('booked') !== -1) return;
+
+                var seatNumber = Number(seat.dataset.seat);
+                var img = seat.querySelector('img');
+
+                if (seat.className.indexOf('selected') !== -1) 
+                {
+                    seat.className = 'seat available';
+                    img.src = 'chair.png';
+                    var idx = selected.indexOf(seatNumber);
+                    if (idx !== -1) selected.splice(idx, 1);
+                } 
+                else 
+                {
+                    seat.className = 'seat selected';
+                    img.src = 'chair_selected.png';
+                    selected.push(seatNumber);
+                }
+            });
+
+            var bookBtn = document.getElementById('book-btn');
+            bookBtn.addEventListener('click', function () 
+            {
+                if (selected.length === 0) 
+                {
+                    return;
+                }
+                alert('You have succesfully booked seats: ' + selected.join(', '));
+                for (var i = 0; i < selected.length; i++) 
+                {
+                    var seatNum = selected[i];
+                    var seat = document.querySelector('.seat[data-seat="' + seatNum + '"]');
+                    seat.className = 'seat booked';
+                    seat.querySelector('img').src = 'chair_book.png';
+                    booked.push(seatNum);
+                }
+                selected = [];
+            });
+        });
+    </script>
+
+</body>
+
+</html>

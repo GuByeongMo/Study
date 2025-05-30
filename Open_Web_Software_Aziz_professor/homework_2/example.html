@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Seat Booking</title>
+  <style>
+    /* ─── 공통 ─── */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body, html { height:100%; font-family: Arial, sans-serif; }
+
+    /* ─── 로그인 화면 ─── */
+    #login-screen {
+      position: relative;
+      width:100%; height:100%;
+      background: url('popcorn.jpg') center/cover no-repeat;
+    }
+    #login-screen .title {
+      position: absolute; top:40px; left:40px;
+      font-size:96px; color:white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+    #login-screen .login-box {
+      position: absolute; top:40px; right:40px;
+      display:flex; flex-direction:column; gap:12px;
+      width:260px;
+    }
+    #login-screen .login-box input {
+      padding:10px 14px; border:none; border-radius:20px; font-size:14px;
+    }
+    #login-screen .login-box button {
+      padding:10px 0; border:none; border-radius:20px;
+      background:#3e4ef2; color:white; font-size:14px; cursor:pointer;
+    }
+    #login-screen #message {
+      margin-top:8px; color:yellow; font-size:14px;
+    }
+
+    /* ─── 메인 화면 ─── */
+    #main-screen { display:none; }
+
+    /* 헤더 툴바 */
+    header .toolbar {
+      display:flex; justify-content:space-between; align-items:center;
+      background:rgba(255,255,255,0.8); padding:10px 20px;
+    }
+    .toolbar nav a { margin:0 10px; text-decoration:none; color:#333; }
+    .toolbar nav button {
+      padding:6px 12px; border:2px solid #333; background:transparent; cursor:pointer;
+    }
+
+    /* 히어로 섹션 */
+    .hero {
+      background: url('cinema.jpg') center/cover no-repeat;
+      height:50vh; display:flex; align-items:center; justify-content:center;
+    }
+    .hero h1 {
+      color:white; font-size:4rem;
+      text-shadow:2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* 좌석맵 */
+    .seat-map { padding:30px; text-align:center; }
+    #seats-container {
+      display:grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap:12px; max-width:600px;
+      margin:0 auto 20px; padding:10px; border:2px solid #ccc;
+    }
+    .seat {
+      width:48px; height:48px; border-radius:6px;
+      background:#fff; border:2px solid #555;
+      position:relative; cursor:pointer;
+    }
+    .seat.available:hover {
+      outline:3px solid rgba(0,123,255,0.7);
+    }
+    .seat.booked {
+      background:#e74c3c; cursor:not-allowed;
+    }
+    .seat.selected {
+      background:#f1c40f;
+    }
+    .seat::after {
+      content: attr(data-seat);
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      font-weight:bold; color:#333;
+    }
+
+    /* 범례 + 버튼 */
+    .legend {
+      display:flex; justify-content:center; gap:20px; margin-bottom:20px;
+    }
+    .legend-item { display:flex; align-items:center; gap:6px; font-size:0.9rem; }
+    .legend-item .seat { margin:0; }
+    #book-btn {
+      padding:12px 30px; font-size:1rem;
+      border:2px solid #3498db; background:white;
+      border-radius:25px; color:#3498db; cursor:pointer;
+    }
+    #book-btn:hover { background:#3498db; color:white; }
+  </style>
+</head>
+<body>
+
+  <!-- 로그인 화면 -->
+  <div id="login-screen">
+    <h1 class="title">Movie</h1>
+    <div class="login-box">
+      <input type="text" id="userid" placeholder="ID">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="Signin()">Sign in</button>
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <!-- 메인 화면 -->
+  <div id="main-screen">
+    <header>
+      <div class="toolbar">
+        <span>You are logged in as <strong>admin</strong></span>
+        <nav>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+          <button onclick="logout()">Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Welcome to Seat Booking</h1>
+    </section>
+
+    <section class="seat-map">
+      <div id="seats-container"></div>
+      <div class="legend">
+        <div class="legend-item"><div class="seat available"></div>Available</div>
+        <div class="legend-item"><div class="seat booked"></div>Booked</div>
+        <div class="legend-item"><div class="seat selected"></div>Selected</div>
+      </div>
+      <button id="book-btn">BOOK NOW</button>
+    </section>
+  </div>
+
+  <script>
+    // 로그인 처리
+    function Signin() {
+      const user = document.getElementById("userid").value.trim();
+      const pw   = document.getElementById("password").value.trim();
+      const msg  = document.getElementById("message");
+      msg.innerText = '';
+      if (user !== 'admin') {
+        msg.innerText = 'ID does not match'; return;
+      }
+      if (pw !== '1234') {
+        msg.innerText = 'Password does not match'; return;
+      }
+      // 성공 시 화면 전환
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('main-screen').style.display  = 'block';
+      initSeats();
+    }
+    // 로그아웃
+    function logout() {
+      location.reload();
+    }
+
+    // 좌석맵 초기화
+    function initSeats() {
+      const seatsContainer = document.getElementById('seats-container');
+      const bookedSeats = new Set([2,4,11,15,19,24,28,30,43]);
+      const selectedSeats = new Set();
+
+      for (let i=1; i<=50; i++) {
+        const seat = document.createElement('div');
+        seat.classList.add('seat');
+        seat.dataset.seat = i;
+        if (bookedSeats.has(i)) seat.classList.add('booked');
+        else seat.classList.add('available');
+        seatsContainer.appendChild(seat);
+      }
+
+      seatsContainer.addEventListener('click', e => {
+        if (!e.target.classList.contains('seat')) return;
+        const num = +e.target.dataset.seat;
+        if (bookedSeats.has(num)) return;
+        if (selectedSeats.has(num)) {
+          selectedSeats.delete(num);
+          e.target.classList.replace('selected','available');
+        } else {
+          selectedSeats.add(num);
+          e.target.classList.replace('available','selected');
+        }
+      });
+
+      document.getElementById('book-btn').addEventListener('click', () => {
+        if (selectedSeats.size === 0) {
+          alert('Please select at least one seat.');
+          return;
+        }
+        alert(`You have booked seats: ${[...selectedSeats].join(', ')}`);
+        selectedSeats.forEach(num => {
+          const el = seatsContainer.querySelector(`.seat[data-seat="${num}"]`);
+          el.classList.replace('selected','booked');
+          bookedSeats.add(num);
+        });
+        selectedSeats.clear();
+      });
+    }
+  </script>
+</body>
+</html>

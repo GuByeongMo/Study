@@ -1,32 +1,80 @@
 <!DOCTYPE html>
-
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
+        <style>
+            .container {
+                position: relative;
+                overflow:hidden;
+                background-image: url('popcorn1.jfif');
+                background-size: cover;
+                background-position: center;
+                width: 100%;
+                height: 100vh;
+            }
+            .title {
+                position: absolute;
+                top: 40px;
+                left: 40px;
+                font-size: 96px;
+                font-weight: bold;
+                color: white;
+                text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+            }
+            .login-box {
+                position: absolute;
+                top: 40px;
+                right: 40px;
+                width: 260px;
+                display: flex;
+                flex-direction: column;
+            }
+            .login-box input {
+                padding: 10px 14px;
+                border-radius: 20px;
+                border: none;
+                font-size: 14px;
+            }
+            .login-box button {
+                padding: 10px 0;
+                border: none;
+                border-radius: 20px;
+                background-color: #3e4ef2;
+                color: white;
+                font-size: 14px;
+                cursor: pointer;
+            }
+        </style>
     </head>
 
     <body>
         <div class="container">
-            <h1 class="title">Movie</h1>
+            
+            <h1 class="title">
+                Movie
+            </h1>
             <div class="login-box">
-                <input type="text" id="id" placeholder="ID"><br>
-                <input type="password" id="password" placeholder="Confirm Password"><br>
+                <input type="text" id="userid" placeholder="ID"><br>
+                <input type="password" id="password" placeholder="Password"><br>
                 <button id="subminBtn" onclick="Signin()">Sign in</button>
+                <p id="message" style="color: red; margin-top: 10px;"></p>
             </div>
-          </div>
-        
-        <br>
+        </div>
         
         <script>
             function Signin() {
-                let password = document.getElementById("id").value;
-                let confirmPassword = document.getElementById("password").value;
-                if(id !== "admin") {
+                let userId = document.getElementById("userid").value;
+                let password = document.getElementById("password").value;
+                if(userId !== "admin") {
                     document.getElementById("message").innerText = "ID do not match" ;
+                    return;
                 }
                 if(password !== '1234') {
                     document.getElementById("message").innerText = "Password do not match" ;
+                    return;
                 }
+                sessionStorage.loggedInUser = userId;
+                
+                window.location.href = 'main.html';
             }
         </script>
     </body>
